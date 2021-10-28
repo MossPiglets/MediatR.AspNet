@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatR.AspNet", "MediatR.AspNet\MediatR.AspNet.csproj", "{61ADD159-8978-4361-848F-23EE6D0A6080}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediatR.AspNet", "MediatR.AspNet\MediatR.AspNet.csproj", "{61ADD159-8978-4361-848F-23EE6D0A6080}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatR.AspNet.Tests", "MediatR.AspNet.Tests\MediatR.AspNet.Tests.csproj", "{845DD018-472B-48B9-A157-3F7460D31CEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{61ADD159-8978-4361-848F-23EE6D0A6080}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61ADD159-8978-4361-848F-23EE6D0A6080}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61ADD159-8978-4361-848F-23EE6D0A6080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{845DD018-472B-48B9-A157-3F7460D31CEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{845DD018-472B-48B9-A157-3F7460D31CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{845DD018-472B-48B9-A157-3F7460D31CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{845DD018-472B-48B9-A157-3F7460D31CEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
