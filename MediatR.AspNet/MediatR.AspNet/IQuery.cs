@@ -1,10 +1,3 @@
-﻿using System;
-using System.Net;
-
-namespace MediatR.AspNet
-{
-    public interface IQuery<T>
-    {
-
-    }
+﻿namespace MediatR.AspNet {
+    public interface IQuery<T> : IRequest<T> where T : class { }
 }
