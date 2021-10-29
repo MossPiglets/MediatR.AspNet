@@ -17,6 +17,9 @@
       <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/QueryTests.cs" />
       <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/CommandTests.cs" />
       <option value="$PROJECT_DIR$/MediatR.AspNet/Exceptions/NotFoundExceptions.cs" />
+      <option value="$PROJECT_DIR$/MediatR.AspNet/Exceptions/NotFoundException.cs" />
+      <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/ExceptionsTests/NotFoundExceptionTests.cs" />
+      <option value="$PROJECT_DIR$/MediatR.AspNet/Exceptions/DeleteNotAllowedException.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="20AdENdX97n2EeMWFPEt0CfEiSe" />
