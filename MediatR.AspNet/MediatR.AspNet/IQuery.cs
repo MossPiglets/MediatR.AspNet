@@ -3,7 +3,7 @@ using System.Net;
 
 namespace MediatR.AspNet
 {
-    public interface IQuery<T>: IWebRequestCreate<>
+    public interface IQuery<T>
     {
 
     }
