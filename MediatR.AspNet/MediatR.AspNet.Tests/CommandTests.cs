@@ -8,7 +8,7 @@ namespace MediatR.AspNet.Tests {
 			// Arrange
 			// Act
 			// Assert
-			typeof(IRequest<TestClass>).IsAssignableFrom(typeof(ICommand<TestClass>)).Should().BeTrue();
+			typeof(ICommand<>).Should().BeAssignableTo(typeof(IRequest<>));
 		}
 	}
 }
