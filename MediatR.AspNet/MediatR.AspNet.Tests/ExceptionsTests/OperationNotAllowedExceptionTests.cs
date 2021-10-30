@@ -4,22 +4,22 @@ using MediatR.AspNet.Exceptions;
 using NUnit.Framework;
 
 namespace MediatR.AspNet.Tests.ExceptionsTests {
-    public class DeleteNotAllowedExceptionTests {
+    public class OperationNotAllowedExceptionTests {
         [Test]
         public void ShouldBeException() {
             // Arrange
             // Act
             // Assert
-            typeof(Exception).IsAssignableFrom(typeof(DeleteNotAllowedException)).Should().BeTrue();
+            typeof(Exception).IsAssignableFrom(typeof(OperationNotAllowedException)).Should().BeTrue();
         }
 
         [Test]
         public void NoArguments_ShouldReturnExceptionWithBaseMessage() {
             // Arrange
             // Act
-            var exception = new DeleteNotAllowedException();
+            var exception = new OperationNotAllowedException();
             // Assert
-            exception.Message.Should().Be("Cannot delete entity");
+            exception.Message.Should().Be("Cannot make operation on entity");
         }
 
         [Test]
@@ -27,9 +27,9 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             // Arrange
             var type = typeof(string);
             // Act
-            var exception = new DeleteNotAllowedException(type);
+            var exception = new OperationNotAllowedException(type);
             // Assert
-            exception.Message.Should().Be($"Cannot delete {type.Name}");
+            exception.Message.Should().Be($"Cannot make operation on {type.Name}");
         }
 
         [Test]
@@ -38,9 +38,9 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var type = typeof(string);
             var id = "000";
             // Act
-            var exception = new DeleteNotAllowedException(type, id);
+            var exception = new OperationNotAllowedException(type, id);
             // Assert
-            exception.Message.Should().Be($"Cannot delete {type.Name} with id {id}");
+            exception.Message.Should().Be($"Cannot make operation on {type.Name} with id {id}");
         }
 
         [Test]
@@ -49,7 +49,7 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var innerException = new ArgumentException();
             var message = "test";
             // Act
-            var exception = new DeleteNotAllowedException(message, innerException);
+            var exception = new OperationNotAllowedException(message, innerException);
             // Assert
             exception.Message.Should().Be(message);
             exception.InnerException.Should().Be(innerException);
@@ -60,7 +60,7 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             // Arrange
             var message = "test";
             // Act
-            var exception = new DeleteNotAllowedException(message);
+            var exception = new OperationNotAllowedException(message);
             // Assert
             exception.Message.Should().Be(message);
         }
