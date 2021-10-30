@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49071615-1a64-43c4-b8a2-7885ca218954" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/MediatR.AspNet/Filters/CustomExceptionFilter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MediatR.AspNet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MediatR.AspNet/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MediatR.AspNet/MediatR.AspNet.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MediatR.AspNet/MediatR.AspNet.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MediatR.AspNet.Tests/FiltersTests/CustomExceptionFilterTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +33,7 @@
       <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/ExceptionsTests/UpdateNotAllowedExceptionTests.cs" />
       <option value="$PROJECT_DIR$/MediatR.AspNet/CustomExceptionFilter.cs" />
       <option value="$PROJECT_DIR$/MediatR.AspNet/Filters/CustomExceptionFilter.cs" />
+      <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/FiltersTests/CustomExceptionFilterTests.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="20AdENdX97n2EeMWFPEt0CfEiSe" />
