@@ -13,15 +13,16 @@ namespace MediatR.AspNet.Filters {
                     code = HttpStatusCode.NotFound;
                     problemDetails.Title = context.Exception.Message;
                     break;
-                case DeleteNotAllowedException ex:
+                case DeleteNotAllowedException _:
                     code = HttpStatusCode.MethodNotAllowed;
-                    problemDetails.Title = ex.Message;
+                    problemDetails.Title = context.Exception.Message;
                     break;
                 case OperationNotAllowedException _:
                     code = HttpStatusCode.Forbidden;
+                    problemDetails.Title = context.Exception.Message;
                     break;
-                case ExistsException _:
-                case UpdateNotAllowedException _:
+                case ExistsException _ :
+                case UpdateNotAllowedException _ :
                     code = HttpStatusCode.Conflict;
                     problemDetails.Title = context.Exception.Message;
                     break;
