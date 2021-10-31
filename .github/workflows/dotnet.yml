@@ -3,6 +3,10 @@ name: .NET
 on:
   pull_request:
     branches: [ develop ]
+    
+defaults:
+      run:
+        working-directory: ./MediaR.AspNet
 
 jobs:
   build:
