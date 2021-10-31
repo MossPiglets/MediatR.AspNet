@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using FluentAssertions;
 using MediatR.AspNet.Exceptions;
 using MediatR.AspNet.Filters;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
+using MediatR.AspNet.Tests.Factories;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Routing;
 using NUnit.Framework;
 
 namespace MediatR.AspNet.Tests.FiltersTests {
@@ -16,11 +13,7 @@ namespace MediatR.AspNet.Tests.FiltersTests {
         public void NotFoundException_ShouldReturnNotFound() {
             // Arrange 
             var exception = new NotFoundException();
-            var actionContext = new ActionContext() {
-                HttpContext = new DefaultHttpContext(),
-                RouteData = new RouteData(),
-                ActionDescriptor = new ActionDescriptor()
-            };
+            var actionContext = ActionContextFactory.CreateActionContext();
             var exceptionContext = new ExceptionContext(actionContext, new List<IFilterMetadata>()) {
                 Exception = exception
             };
@@ -37,11 +30,7 @@ namespace MediatR.AspNet.Tests.FiltersTests {
         public void DeleteNotAllowedException_ShouldReturnMethodNotAllowed() {
             // Arrange 
             var exception = new DeleteNotAllowedException();
-            var actionContext = new ActionContext() {
-                HttpContext = new DefaultHttpContext(),
-                RouteData = new RouteData(),
-                ActionDescriptor = new ActionDescriptor()
-            };
+            var actionContext = ActionContextFactory.CreateActionContext();
             var exceptionContext = new ExceptionContext(actionContext, new List<IFilterMetadata>()) {
                 Exception = exception
             };
@@ -58,11 +47,7 @@ namespace MediatR.AspNet.Tests.FiltersTests {
         public void OperationNotAllowedException_ShouldReturnForbidden() {
             // Arrange 
             var exception = new OperationNotAllowedException();
-            var actionContext = new ActionContext() {
-                HttpContext = new DefaultHttpContext(),
-                RouteData = new RouteData(),
-                ActionDescriptor = new ActionDescriptor()
-            };
+            var actionContext = ActionContextFactory.CreateActionContext();
             var exceptionContext = new ExceptionContext(actionContext, new List<IFilterMetadata>()) {
                 Exception = exception
             };
@@ -79,11 +64,7 @@ namespace MediatR.AspNet.Tests.FiltersTests {
         public void ExistsException_ShouldReturnConflict() {
             // Arrange 
             var exception = new ExistsException();
-            var actionContext = new ActionContext() {
-                HttpContext = new DefaultHttpContext(),
-                RouteData = new RouteData(),
-                ActionDescriptor = new ActionDescriptor()
-            };
+            var actionContext = ActionContextFactory.CreateActionContext();
             var exceptionContext = new ExceptionContext(actionContext, new List<IFilterMetadata>()) {
                 Exception = exception
             };
@@ -100,11 +81,7 @@ namespace MediatR.AspNet.Tests.FiltersTests {
         public void UpdateNotAllowedException_ShouldReturnConflict() {
             // Arrange 
             var exception = new UpdateNotAllowedException();
-            var actionContext = new ActionContext() {
-                HttpContext = new DefaultHttpContext(),
-                RouteData = new RouteData(),
-                ActionDescriptor = new ActionDescriptor()
-            };
+            var actionContext = ActionContextFactory.CreateActionContext();
             var exceptionContext = new ExceptionContext(actionContext, new List<IFilterMetadata>()) {
                 Exception = exception
             };
@@ -121,11 +98,7 @@ namespace MediatR.AspNet.Tests.FiltersTests {
         public void NotCustomException_ShouldReturnInternalServerError() {
             // Arrange 
             var exception = new NullReferenceException();
-            var actionContext = new ActionContext() {
-                HttpContext = new DefaultHttpContext(),
-                RouteData = new RouteData(),
-                ActionDescriptor = new ActionDescriptor()
-            };
+            var actionContext = ActionContextFactory.CreateActionContext();
             var exceptionContext = new ExceptionContext(actionContext, new List<IFilterMetadata>()) {
                 Exception = exception
             };

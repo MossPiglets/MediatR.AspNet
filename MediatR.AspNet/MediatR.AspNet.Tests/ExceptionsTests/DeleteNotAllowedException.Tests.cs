@@ -10,7 +10,7 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             // Arrange
             // Act
             // Assert
-            typeof(Exception).IsAssignableFrom(typeof(DeleteNotAllowedException)).Should().BeTrue();
+            typeof(DeleteNotAllowedException).Should().BeAssignableTo(typeof(Exception));
         }
 
         [Test]

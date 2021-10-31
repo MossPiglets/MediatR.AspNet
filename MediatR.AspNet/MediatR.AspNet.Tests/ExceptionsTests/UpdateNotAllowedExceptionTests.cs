@@ -10,7 +10,7 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             // Arrange
             // Act
             // Assert
-            typeof(Exception).IsAssignableFrom(typeof(UpdateNotAllowedException)).Should().BeTrue();
+            typeof(UpdateNotAllowedException).Should().BeAssignableTo(typeof(Exception));
         }
 
         [Test]
