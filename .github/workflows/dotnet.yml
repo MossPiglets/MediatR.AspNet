@@ -3,6 +3,10 @@ name: .NET
 on:
   pull_request:
     branches: [ develop ]
+    
+defaults:
+      run:
+        working-directory: ./MediatR.AspNet
 
 jobs:
   build:
@@ -16,8 +20,8 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore 
     - name: Build
       run: dotnet build --no-restore
     - name: UnitTesta
-      run: dotnet test --no-build --verbosity normal MediatR.AspNet/MediatR.AspNet.Tests/MediatR.AspNet.Tests.csproj
+      run: dotnet test --no-build --verbosity normal MediatR.AspNet.Tests/MediatR.AspNet.Tests.csproj
