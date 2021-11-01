@@ -3,10 +3,6 @@ name: .NET
 on:
   pull_request:
     branches: [ develop ]
-    
-defaults:
-      run:
-        working-directory: ./MediaR.AspNet
 
 jobs:
   build:
@@ -23,5 +19,5 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: UnitTesta
+      run: dotnet test --no-build --verbosity normal MediatR.AspNet/MediatR.AspNet.Tests/MediatR.AspNet.Tests.csproj
