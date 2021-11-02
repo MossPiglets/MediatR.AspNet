@@ -8,6 +8,9 @@
     <list default="true" id="49071615-1a64-43c4-b8a2-7885ca218954" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/Demo/Product/Queries/GetProducts/GetProductsQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Demo/Product/Queries/GetProducts/GetProductsQueryHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Demo/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Demo/Startup.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MediatR.AspNet.Tests/FiltersExtensionsTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MediatR.AspNet/FiltersExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MediatR.AspNet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MediatR.AspNet/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +48,7 @@
       <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/FiltersTests/CustomExceptionFilterTests.cs" />
       <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/Factories/ExceptionContextFactory.cs" />
       <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/Factories/ActionContextFactory.cs" />
+<<<<<<< HEAD
       <option value="$PROJECT_DIR$/Demo/Product/ProductProfile.cs" />
       <option value="$PROJECT_DIR$/Demo/Product/ProductModel.cs" />
       <option value="$PROJECT_DIR$/Demo/Product/ProductDto.cs" />
@@ -52,6 +56,11 @@
       <option value="$PROJECT_DIR$/Demo/Product/Queries/GetProducts/GetProductsQuery.cs" />
       <option value="$PROJECT_DIR$/Demo/Startup.cs" />
       <option value="$PROJECT_DIR$/Demo/Product/Queries/GetProducts/GetProductsQueryHandler.cs" />
+=======
+      <option value="$PROJECT_DIR$/MediatR.AspNet/IServiceCollectionExtensions.cs" />
+      <option value="$PROJECT_DIR$/MediatR.AspNet/FiltersExtensions.cs" />
+      <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/FiltersExtensionsTests.cs" />
+>>>>>>> 10f979eb5209d0b4ff3820520fe343d199ab009e
     </changedPaths>
   </component>
   <component name="ProjectId" id="20AdENdX97n2EeMWFPEt0CfEiSe" />
@@ -69,7 +78,11 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected=".NET Project.MediatR.AspNet.Tests">
+=======
+  <component name="RunManager">
+>>>>>>> 10f979eb5209d0b4ff3820520fe343d199ab009e
     <configuration name="MediatR.AspNet.Tests" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -151,5 +164,24 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/MediatR.AspNet.Tests/FiltersExtensionsTests.cs</url>
+          <line>17</line>
+          <properties documentPath="C:\Users\kasia\Documents\MediatR.AspNet\MediatR.AspNet\MediatR.AspNet.Tests\FiltersExtensionsTests.cs" initialLine="17" containingFunctionPresentation="method 'HasCustomExceptionsFilter'">
+            <startOffsets>
+              <option value="592" />
+            </startOffsets>
+            <endOffsets>
+              <option value="661" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
