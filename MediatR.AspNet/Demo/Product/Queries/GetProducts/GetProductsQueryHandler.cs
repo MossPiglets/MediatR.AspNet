@@ -5,6 +5,7 @@ using MediatR;
 
 namespace Demo.Product.Queries.GetProducts {
     public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, List<ProductDto>> {
+        private readonly List<ProductModel>;
         public GetProductsQueryHandler() {
             
         }

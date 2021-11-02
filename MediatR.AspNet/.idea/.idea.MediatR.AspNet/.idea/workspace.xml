@@ -6,9 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49071615-1a64-43c4-b8a2-7885ca218954" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Demo/Product/Queries/GetProducts/GetProductsQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Demo/Product/Queries/GetProducts/GetProductsQueryHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Demo/Demo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Demo/Demo.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo/Product/Queries/GetProducts/GetProductsQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Demo/Product/Queries/GetProducts/GetProductsQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Demo/Startup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +16,10 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/B4EF600F-4A59-4FE2-865A-8F97F915FB9D/13D/FilterCollection.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/87E8CE02-3EE4-404D-9082-6C8A5038171A/0/IFilterMetadata.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -42,12 +45,12 @@
       <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/FiltersTests/CustomExceptionFilterTests.cs" />
       <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/Factories/ExceptionContextFactory.cs" />
       <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/Factories/ActionContextFactory.cs" />
-      <option value="$PROJECT_DIR$/Demo/Startup.cs" />
       <option value="$PROJECT_DIR$/Demo/Product/ProductProfile.cs" />
       <option value="$PROJECT_DIR$/Demo/Product/ProductModel.cs" />
       <option value="$PROJECT_DIR$/Demo/Product/ProductDto.cs" />
       <option value="$PROJECT_DIR$/Demo/ProductsFactory.cs" />
       <option value="$PROJECT_DIR$/Demo/Product/Queries/GetProducts/GetProductsQuery.cs" />
+      <option value="$PROJECT_DIR$/Demo/Startup.cs" />
       <option value="$PROJECT_DIR$/Demo/Product/Queries/GetProducts/GetProductsQueryHandler.cs" />
     </changedPaths>
   </component>
@@ -58,6 +61,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.3502052" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
