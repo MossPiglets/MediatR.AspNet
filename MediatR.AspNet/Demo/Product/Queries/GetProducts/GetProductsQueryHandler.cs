@@ -6,18 +6,17 @@ using AutoMapper;
 using MediatR;
 
 namespace Demo.Product.Queries.GetProducts {
-    public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, List<ProductDto>> {
-        private readonly List<ProductModel> _products;
+    public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, IEnumerable<ProductDto>> {
+        private readonly List<Product> _products;
         private readonly IMapper _mapper;
 
         public GetProductsQueryHandler(IMapper mapper) {
-            _products = ProductsFactory.GetProducts();
+            _products = ProductsFactory.Products.ToList();
             _mapper = mapper;
         }
 
-        public Task<List<ProductDto>> Handle(GetProductsQuery request, CancellationToken cancellationToken) {
-            var productsEntities = _products.Select(a => _mapper.Map<ProductDto>(a))
-                .ToList();
+        public Task<IEnumerable<ProductDto>> Handle(GetProductsQuery request, CancellationToken cancellationToken) {
+            var productsEntities = _products.Select(a => _mapper.Map<ProductDto>(a));
             return Task.FromResult(productsEntities);
         }
     }

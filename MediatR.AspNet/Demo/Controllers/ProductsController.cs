@@ -11,18 +11,17 @@ using MediatR;
 namespace Demo.Controllers {
     [ApiController]
     [Route("[controller]")]
-    public class ProductController : ControllerBase {
+    public class ProductsController : ControllerBase {
         private readonly IMediator _mediator;
 
-        public ProductController(IMediator mediator) {
+        public ProductsController(IMediator mediator) {
             _mediator = mediator;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductDto>> Get() {
+        public async Task<IEnumerable<ProductDto>> Get() {
             var query = new GetProductsQuery();
-            var products = _mediator.Send(query);
-            return Ok(products.Result);
+            return await _mediator.Send(query);
         }
     }
 }

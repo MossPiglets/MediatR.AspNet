@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
 using Bogus;
-using Demo.Product;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Demo {
     public static class ProductsFactory {
-        public static List<ProductModel> GetProducts(int numbersOfProducts = 10) {
+        public static IEnumerable<Product.Product> Products { get; set; }
+        static ProductsFactory() {
             var productId = 0;
-            var fakerProduct = new Faker<ProductModel>()
+            var fakerProduct = new Faker<Product.Product>()
                 .RuleFor(a => a.Id, f => productId++)
                 .RuleFor(a => a.Name, f => f.Lorem.Word());
-            return fakerProduct.Generate(numbersOfProducts);
+            Products = fakerProduct.Generate(10);
         }
     }
 }
