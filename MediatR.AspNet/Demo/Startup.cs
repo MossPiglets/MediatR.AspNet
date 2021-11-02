@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using MediatR.AspNet;
 
 namespace Demo
 {
@@ -28,7 +29,7 @@ namespace Demo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMediatR(typeof(Startup));
-            services.AddControllers();
+            services.AddControllers(o => o.Filters.AddMediatrExceptions());
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(c =>
             {
