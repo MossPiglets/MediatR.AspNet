@@ -6,7 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49071615-1a64-43c4-b8a2-7885ca218954" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MediatR.AspNet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MediatR.AspNet/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Demo/Startup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +40,9 @@
       <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/FiltersTests/CustomExceptionFilterTests.cs" />
       <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/Factories/ExceptionContextFactory.cs" />
       <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/Factories/ActionContextFactory.cs" />
+      <option value="$PROJECT_DIR$/Demo/Product/ProductModel.cs" />
+      <option value="$PROJECT_DIR$/Demo/Product/ProductDto.cs" />
+      <option value="$PROJECT_DIR$/Demo/Startup.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="20AdENdX97n2EeMWFPEt0CfEiSe" />
