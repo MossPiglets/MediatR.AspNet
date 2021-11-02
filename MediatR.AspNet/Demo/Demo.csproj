@@ -15,4 +15,8 @@
     <ProjectReference Include="..\MediatR.AspNet\MediatR.AspNet.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Product\Queries" />
+  </ItemGroup>
+
 </Project>
