@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Bogus;
-using Microsoft.AspNetCore.Authentication;
 
 namespace Demo {
     public static class ProductsFactory {

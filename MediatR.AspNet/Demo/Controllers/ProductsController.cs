@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Demo.Product;
+using Demo.Product.Commands.DeleteProduct;
 using Demo.Product.Commands.PostProduct;
 using Demo.Product.Commands.PutProduct;
 using Demo.Product.Queries.GetProductById;
@@ -40,6 +41,14 @@ namespace Demo.Controllers {
         [HttpPut("{id}")]
         public async Task<ProductDto> Put(UpdateProductCommand command, int id) {
             command.Id = id;
+            return await _mediator.Send(command);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ProductDto> Delete(int id) {
+            var command = new DeleteProductCommand {
+                Id = id
+            };
             return await _mediator.Send(command);
         }
     }
