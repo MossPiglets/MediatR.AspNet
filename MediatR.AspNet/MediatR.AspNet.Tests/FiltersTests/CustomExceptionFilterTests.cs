@@ -41,6 +41,7 @@ namespace MediatR.AspNet.Tests.FiltersTests {
 
             // Assert
             actionContext.HttpContext.Response.StatusCode.Should().Be(405, "Cannot delete entity");
+            // podmień na enumy
         }
 
         [Test]
