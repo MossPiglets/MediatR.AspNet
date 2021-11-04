@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using FluentAssertions;
 using MediatR.AspNet.Exceptions;
 using MediatR.AspNet.Filters;
 using MediatR.AspNet.Tests.Factories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using NUnit.Framework;
 
@@ -23,7 +25,7 @@ namespace MediatR.AspNet.Tests.FiltersTests {
             filter.OnException(exceptionContext);
 
             // Assert
-            actionContext.HttpContext.Response.StatusCode.Should().Be(404, "Entity not found");
+            actionContext.HttpContext.Response.StatusCode.Should().Be((int) HttpStatusCode.NotFound, "Entity not found");
         }
 
         [Test]
@@ -40,8 +42,7 @@ namespace MediatR.AspNet.Tests.FiltersTests {
             filter.OnException(exceptionContext);
 
             // Assert
-            actionContext.HttpContext.Response.StatusCode.Should().Be(405, "Cannot delete entity");
-            // podmień na enumy
+            actionContext.HttpContext.Response.StatusCode.Should().Be((int) HttpStatusCode.MethodNotAllowed, "Cannot delete entity");
         }
 
         [Test]
@@ -58,7 +59,7 @@ namespace MediatR.AspNet.Tests.FiltersTests {
             filter.OnException(exceptionContext);
 
             // Assert
-            actionContext.HttpContext.Response.StatusCode.Should().Be(403, "Cannot make operation on entity");
+            actionContext.HttpContext.Response.StatusCode.Should().Be((int) HttpStatusCode.Forbidden, "Cannot make operation on entity");
         }
 
         [Test]
@@ -75,7 +76,7 @@ namespace MediatR.AspNet.Tests.FiltersTests {
             filter.OnException(exceptionContext);
 
             // Assert
-            actionContext.HttpContext.Response.StatusCode.Should().Be(409, "Entity already exists");
+            actionContext.HttpContext.Response.StatusCode.Should().Be((int) HttpStatusCode.Conflict, "Entity already exists");
         }
 
         [Test]
@@ -92,7 +93,7 @@ namespace MediatR.AspNet.Tests.FiltersTests {
             filter.OnException(exceptionContext);
 
             // Assert
-            actionContext.HttpContext.Response.StatusCode.Should().Be(409, "Cannot update entity");
+            actionContext.HttpContext.Response.StatusCode.Should().Be((int) HttpStatusCode.Conflict, "Cannot update entity");
         }
 
         [Test]
@@ -110,7 +111,7 @@ namespace MediatR.AspNet.Tests.FiltersTests {
 
             // Assert
             actionContext.HttpContext.Response.StatusCode.Should()
-                .Be(500, "Object reference not set to an instance of an object");
+                .Be((int) HttpStatusCode.InternalServerError, "Object reference not set to an instance of an object");
         }
     }
 }
