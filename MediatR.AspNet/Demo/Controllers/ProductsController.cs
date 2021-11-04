@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Demo.Product;
 using Demo.Product.Commands.PostProduct;
+using Demo.Product.Commands.PutProduct;
 using Demo.Product.Queries.GetProductById;
 using Demo.Product.Queries.GetProducts;
 using MediatR;
@@ -35,7 +33,13 @@ namespace Demo.Controllers {
         }
 
         [HttpPost]
-        public async Task<ProductDto> Post(PostProductCommand command) {
+        public async Task<ProductDto> Post(CreateProductCommand command) {
+            return await _mediator.Send(command);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ProductDto> Put(UpdateProductCommand command, int id) {
+            command.Id = id;
             return await _mediator.Send(command);
         }
     }

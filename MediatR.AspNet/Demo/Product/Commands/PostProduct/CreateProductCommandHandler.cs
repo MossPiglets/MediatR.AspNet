@@ -8,16 +8,16 @@ using MediatR;
 using MediatR.AspNet.Exceptions;
 
 namespace Demo.Product.Commands.PostProduct {
-	public class PostProductCommandHandler : IRequestHandler<PostProductCommand, ProductDto> {
+	public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, ProductDto> {
 		private readonly List<Product> _products;
 		private readonly IMapper _mapper;
 
-		public PostProductCommandHandler(IMapper mapper) {
+		public CreateProductCommandHandler(IMapper mapper) {
 			_products = ProductsFactory.Products.ToList();
 			_mapper = mapper;
 		}
 
-		public Task<ProductDto> Handle(PostProductCommand request, CancellationToken cancellationToken) {
+		public Task<ProductDto> Handle(CreateProductCommand request, CancellationToken cancellationToken) {
 			if (_products.Any(a => a.Id == request.Id)) {
 				throw new ExistsException(typeof(Product), request.Id.ToString());
 			}
