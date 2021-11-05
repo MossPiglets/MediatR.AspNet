@@ -20,9 +20,8 @@ namespace Demo.Product.Commands.PostProduct {
 			if (_products.Any(a => a.Id == request.Id)) {
 				throw new ExistsException(typeof(Product), request.Id.ToString());
 			}
-
+			
 			var product = _mapper.Map<Product>(request);
-			// tu jebło
 			_products.Add(product);
 			
 			return Task.FromResult(_mapper.Map<ProductDto>(product));

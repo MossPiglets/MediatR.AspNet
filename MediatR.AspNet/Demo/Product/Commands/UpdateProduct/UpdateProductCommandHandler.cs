@@ -17,7 +17,7 @@ namespace Demo.Product.Commands.PutProduct {
 		}
 
 		public Task<ProductDto> Handle(UpdateProductCommand request, CancellationToken cancellationToken) {
-			var entity = _products.FirstOrDefault(a => a.Id == request.Id);
+			var entity = _products.FirstOrDefault(a => a.Id == request.OldProductId);
 			if (entity == null) {
 				throw new UpdateNotAllowedException(typeof(Product), request.Id.ToString());
 			}

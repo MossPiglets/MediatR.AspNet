@@ -65,9 +65,9 @@ namespace DemoIntegrationTests {
 			response.StatusCode.Should().Be(HttpStatusCode.NotFound);
 		}
 		[Test]
-		public async Task PostProduct_NotExistingId_ShouldReturnProductDto() {
+		public async Task PostProduct_CorrectId_ShouldReturnProductDto() {
 			// Arrange
-			var createProductCommand = RequestBuilder.CreateProductCommand();
+			var createProductCommand = RequestBuilder.CreateCorrectCreateProductCommand();
 			//Act
 			var response = await _client.PostAsJsonAsync("Products", createProductCommand);
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -76,6 +76,28 @@ namespace DemoIntegrationTests {
 			product.Should().NotBeNull();
 			product.Id.Should().Be(createProductCommand.Id);
 			product.Name.Should().Be(createProductCommand.Name);
+		}
+		[Test]
+		public async Task PostProduct_ExistingId_ShouldReturnConflict() {
+			// Arrange
+			var createProductCommand = RequestBuilder.CreateIncorrectCreateProductCommand();
+			//Act
+			var response = await _client.PostAsJsonAsync("Products", createProductCommand);
+			// Assert
+			response.StatusCode.Should().Be(HttpStatusCode.Conflict);
+		}
+		[Test]
+		public async Task PutProduct_CorrectId_ShouldReturnProductDto() {
+			// Arrange
+			var updateProductCommand = RequestBuilder.CreateCorrectUpdateProductCommand();
+			//Act
+			var response = await _client.PutAsJsonAsync("Products", updateProductCommand);
+			response.StatusCode.Should().Be(HttpStatusCode.OK);
+			var product = await response.Content.ReadFromJsonAsync<ProductDto>();
+			// Assert
+			product.Should().NotBeNull();
+			product.Id.Should().Be(updateProductCommand.Id);
+			product.Name.Should().Be(updateProductCommand.Name);
 		}
 	}
 }
