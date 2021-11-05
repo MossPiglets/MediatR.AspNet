@@ -1,51 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using Bogus;
+using Demo;
+using Demo.Product;
 using Demo.Product.Commands.PostProduct;
 using Demo.Product.Commands.PutProduct;
 
 namespace DemoIntegrationTests {
 	public static class RequestBuilder {
-		private static List<int> _existingIds;
+		private static List<Product> _products;
+		private static int _id = 20;
 		private static Random _random;
+
 		static RequestBuilder() {
-			_existingIds = new List<int>();
-			for (int i = 1; i < 11; i++) {
-				_existingIds.Add(i);
-			}
+			_products = ProductsFactory.Products.ToList();
 			_random = new Random();
 		}
 
 		public static int CreateExistingId() {
-			var id = 0;
-			while (id <= 0) {
-				id = _random.Next(11);
+			var index = 0;
+			while (index <= 0) {
+				index = _random.Next(_products.Count);
 			}
-			return id;
+
+			return _products[index].Id;
 		}
 
 		public static int CreateNotExistingId() {
-			var id = 1;
-			while (!_existingIds.Contains(id)) {
-				id = _random.Next(int.MaxValue);
-			}
-			_existingIds.Add(id);
-			
+			var id = _id;
+			_id++;
+
 			return id;
 		}
 
 		public static CreateProductCommand CreateProductCommand() {
 			var fakerCreateProductCommand = new Faker<CreateProductCommand>()
-			                   .RuleFor(a => a.Id, CreateNotExistingId)
-			                   .RuleFor(a => a.Name, f => f.Lorem.Word());
+			                                .RuleFor(a => a.Id, CreateNotExistingId)
+			                                .RuleFor(a => a.Name, f => f.Lorem.Word());
 			return fakerCreateProductCommand.Generate();
 		}
 
 		public static UpdateProductCommand UpdateProductCommand() {
 			var fakerUpdateProductCommand = new Faker<UpdateProductCommand>()
-			                   .RuleFor(a => a.OldProductId, CreateExistingId)
-			                   .RuleFor(a => a.Name, f => f.Lorem.Word())
-			                   .RuleFor(a => a.Id, CreateNotExistingId);
+			                                .RuleFor(a => a.OldProductId, CreateExistingId)
+			                                .RuleFor(a => a.Name, f => f.Lorem.Word())
+			                                .RuleFor(a => a.Id, CreateNotExistingId);
 			return fakerUpdateProductCommand.Generate();
 		}
 	}
