@@ -22,6 +22,7 @@ namespace Demo.Product.Commands.PostProduct {
 			}
 
 			var product = _mapper.Map<Product>(request);
+			// tu jebło
 			_products.Add(product);
 			
 			return Task.FromResult(_mapper.Map<ProductDto>(product));
