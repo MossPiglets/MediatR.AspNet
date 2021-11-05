@@ -48,16 +48,8 @@ namespace DemoIntegrationTests {
 			                                .RuleFor(a => a.Name, f => f.Lorem.Word());
 			return fakerCreateProductCommand.Generate();
 		}
-		public static UpdateProductCommand CreateCorrectUpdateProductCommand() {
+		public static UpdateProductCommand CreateUpdateProductCommand() {
 			var fakerUpdateProductCommand = new Faker<UpdateProductCommand>()
-			                                .RuleFor(a => a.OldProductId, CreateExistingId)
-			                                .RuleFor(a => a.Name, f => f.Lorem.Word())
-			                                .RuleFor(a => a.Id, CreateNotExistingId);
-			return fakerUpdateProductCommand.Generate();
-		}
-		public static UpdateProductCommand CreateIncorrectUpdateProductCommand() {
-			var fakerUpdateProductCommand = new Faker<UpdateProductCommand>()
-			                                .RuleFor(a => a.OldProductId, CreateNotExistingId)
 			                                .RuleFor(a => a.Name, f => f.Lorem.Word())
 			                                .RuleFor(a => a.Id, CreateNotExistingId);
 			return fakerUpdateProductCommand.Generate();

@@ -40,7 +40,7 @@ namespace Demo.Controllers {
 
         [HttpPut("{id}")]
         public async Task<ProductDto> Put(UpdateProductCommand command, int id) {
-            command.Id = id;
+            command.OldProductId = id;
             return await _mediator.Send(command);
         }
 

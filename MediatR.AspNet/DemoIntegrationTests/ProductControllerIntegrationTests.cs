@@ -89,15 +89,50 @@ namespace DemoIntegrationTests {
 		[Test]
 		public async Task PutProduct_CorrectId_ShouldReturnProductDto() {
 			// Arrange
-			var updateProductCommand = RequestBuilder.CreateCorrectUpdateProductCommand();
+			var updateProductCommand = RequestBuilder.CreateUpdateProductCommand();
+			var id = RequestBuilder.CreateExistingId();
 			//Act
-			var response = await _client.PutAsJsonAsync("Products", updateProductCommand);
+			var response = await _client.PutAsJsonAsync($"Products/{id}", updateProductCommand);
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
 			var product = await response.Content.ReadFromJsonAsync<ProductDto>();
 			// Assert
 			product.Should().NotBeNull();
 			product.Id.Should().Be(updateProductCommand.Id);
 			product.Name.Should().Be(updateProductCommand.Name);
+		}
+		[Test]
+		public async Task PutProduct_BadId_ShouldReturnConflict() {
+			// Arrange
+			var updateProductCommand = RequestBuilder.CreateUpdateProductCommand();
+			var id = RequestBuilder.CreateNotExistingId();
+			//Act
+			var response = await _client.PutAsJsonAsync($"Products/{id}", updateProductCommand);
+			// Assert
+			response.StatusCode.Should().Be(HttpStatusCode.Conflict);
+		}
+		[Test]
+		public async Task DeleteProduct_CorrectId_ShouldReturnProductDto() {
+			// Arrange
+			var productsFromData = ProductsFactory.Products.ToList();
+			var id = RequestBuilder.CreateExistingId();
+			var productFromData = productsFromData.First(a => a.Id == id);
+			//Act
+			var response = await _client.DeleteAsync($"Products/{id}");
+			response.StatusCode.Should().Be(HttpStatusCode.OK);
+			var product = await response.Content.ReadFromJsonAsync<ProductDto>();
+			// Assert
+			product.Should().NotBeNull();
+			product.Id.Should().Be(productFromData.Id);
+			product.Name.Should().Be(productFromData.Name);
+		}
+		[Test]
+		public async Task DeleteProduct_BadId_ShouldReturnConflict() {
+			// Arrange
+			var id = RequestBuilder.CreateNotExistingId();
+			//Act
+			var response = await _client.DeleteAsync($"Products/{id}");
+			// Assert
+			response.StatusCode.Should().Be(HttpStatusCode.MethodNotAllowed);
 		}
 	}
 }
