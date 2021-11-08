@@ -1,11 +1,10 @@
-﻿using MediatR.AspNet;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using MediatR.AspNet;
 
-namespace Demo.Product.Commands.PutProduct {
+namespace Demo.Product.Commands.UpdateProduct {
 	public class UpdateProductCommand : ICommand<ProductDto> {
 		[JsonIgnore]
 		public int Id { get; set; }
-		public int OldProductId { get; set; }
 		public string Name { get; set; }
 	}
 }

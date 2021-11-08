@@ -1,8 +1,7 @@
 ﻿using MediatR.AspNet;
 
-namespace Demo.Product.Commands.PostProduct {
+namespace Demo.Product.Commands.CreateProduct {
 	public class CreateProductCommand : ICommand<ProductDto> {
-		public int Id { get; set; }
 		public string Name { get; set; }
 	}
 }

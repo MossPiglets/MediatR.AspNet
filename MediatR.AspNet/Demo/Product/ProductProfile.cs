@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Demo.Product.Commands.PostProduct;
-using Demo.Product.Commands.PutProduct;
+using Demo.Product.Commands.CreateProduct;
+using Demo.Product.Commands.UpdateProduct;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Demo.Product {

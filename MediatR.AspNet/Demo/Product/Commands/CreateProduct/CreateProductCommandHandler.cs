@@ -6,7 +6,7 @@ using AutoMapper;
 using MediatR;
 using MediatR.AspNet.Exceptions;
 
-namespace Demo.Product.Commands.PostProduct {
+namespace Demo.Product.Commands.CreateProduct {
 	public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, ProductDto> {
 		private readonly List<Product> _products;
 		private readonly IMapper _mapper;
@@ -17,11 +17,8 @@ namespace Demo.Product.Commands.PostProduct {
 		}
 
 		public Task<ProductDto> Handle(CreateProductCommand request, CancellationToken cancellationToken) {
-			if (_products.Any(a => a.Id == request.Id)) {
-				throw new ExistsException(typeof(Product), request.Id.ToString());
-			}
-			
 			var product = _mapper.Map<Product>(request);
+			product.Id = _products.Last().Id + 1;
 			_products.Add(product);
 			
 			return Task.FromResult(_mapper.Map<ProductDto>(product));

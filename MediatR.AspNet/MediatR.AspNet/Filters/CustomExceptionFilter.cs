@@ -14,7 +14,7 @@ namespace MediatR.AspNet.Filters {
                     problemDetails.Title = context.Exception.Message;
                     break;
                 case DeleteNotAllowedException _:
-                    code = HttpStatusCode.MethodNotAllowed;
+                    code = HttpStatusCode.BadRequest;
                     problemDetails.Title = context.Exception.Message;
                     break;
                 case OperationNotAllowedException _:

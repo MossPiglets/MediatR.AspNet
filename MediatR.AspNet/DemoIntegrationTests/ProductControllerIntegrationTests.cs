@@ -3,15 +3,18 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using Demo;
 using Demo.Product;
 using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 
 namespace DemoIntegrationTests {
 	public class ProductControllerIntegrationTests {
 		private HttpClient _client;
+		private ProductGenerator _generator = new ProductGenerator();
 
 		[OneTimeSetUp]
 		public void Setup() {
@@ -25,114 +28,99 @@ namespace DemoIntegrationTests {
 		}
 
 		[Test]
-		public async Task GetProducts_ShouldReturnProductDtosList() {
+		public async Task GetProducts_ShouldReturnProducts() {
 			// Arrange
-			var productsFromData = ProductsFactory.Products.ToList();
+			var expectedProducts = ProductsFactory.Products;
 			//Act
 			var response = await _client.GetAsync("Products");
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
 			var products = await response.Content.ReadFromJsonAsync<List<ProductDto>>();
 			// Assert
 			products.Should().NotBeEmpty();
-			products.Count.Should().Be(productsFromData.Count());
-			for (int i = 0; i < products.Count; i++) {
-				products[i].Id.Should().Be(productsFromData[i].Id);
-				products[i].Name.Should().Be(productsFromData[i].Name);
-			}
+			products.Should().BeEquivalentTo(expectedProducts);
 		}
 		[Test]
-		public async Task GetProductById_ExistingId_ShouldReturnProductDto() {
+		public async Task GetProductById_ExistingId_ShouldReturnProduct() {
 			// Arrange
-			var productsFromData = ProductsFactory.Products.ToList();
-			var id = RequestBuilder.CreateExistingId();
-			var productFromData = productsFromData.First(a => a.Id == id);
+			var expectedProduct = ProductsFactory.Products.First();
 			//Act
-			var response = await _client.GetAsync($"Products/{id}");
+			var response = await _client.GetAsync($"Products/{expectedProduct.Id}");
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
 			var product = await response.Content.ReadFromJsonAsync<ProductDto>();
 			// Assert
 			product.Should().NotBeNull();
-			product.Id.Should().Be(productFromData.Id);
-			product.Name.Should().Be(productFromData.Name);
+			product.Id.Should().Be(expectedProduct.Id);
+			product.Name.Should().Be(expectedProduct.Name);
 		}
 		[Test]
 		public async Task GetProductById_NotExistingId_ShouldReturnNotFound() {
 			// Arrange
-			var id = RequestBuilder.CreateNotExistingId();
+			var notExistingId = int.MaxValue;
 			//Act
-			var response = await _client.GetAsync($"Products/{id}");
+			var response = await _client.GetAsync($"Products/{notExistingId}");
 			// Assert
 			response.StatusCode.Should().Be(HttpStatusCode.NotFound);
 		}
 		[Test]
-		public async Task PostProduct_CorrectId_ShouldReturnProductDto() {
+		public async Task PostProduct_CorrectId_ShouldReturnProduct() {
 			// Arrange
-			var createProductCommand = RequestBuilder.CreateCorrectCreateProductCommand();
+			var createProductCommand = _generator.CreateCreateProductCommand();
 			//Act
 			var response = await _client.PostAsJsonAsync("Products", createProductCommand);
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
 			var product = await response.Content.ReadFromJsonAsync<ProductDto>();
 			// Assert
 			product.Should().NotBeNull();
-			product.Id.Should().Be(createProductCommand.Id);
 			product.Name.Should().Be(createProductCommand.Name);
 		}
+		
 		[Test]
-		public async Task PostProduct_ExistingId_ShouldReturnConflict() {
+		public async Task PutProduct_CorrectId_ShouldReturnProduct() {
 			// Arrange
-			var createProductCommand = RequestBuilder.CreateIncorrectCreateProductCommand();
-			//Act
-			var response = await _client.PostAsJsonAsync("Products", createProductCommand);
-			// Assert
-			response.StatusCode.Should().Be(HttpStatusCode.Conflict);
-		}
-		[Test]
-		public async Task PutProduct_CorrectId_ShouldReturnProductDto() {
-			// Arrange
-			var updateProductCommand = RequestBuilder.CreateUpdateProductCommand();
-			var id = RequestBuilder.CreateExistingId();
+			var updateProductCommand = _generator.CreateUpdateProductCommand();
+			var id = ProductsFactory.Products.First().Id;
 			//Act
 			var response = await _client.PutAsJsonAsync($"Products/{id}", updateProductCommand);
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
 			var product = await response.Content.ReadFromJsonAsync<ProductDto>();
 			// Assert
 			product.Should().NotBeNull();
-			product.Id.Should().Be(updateProductCommand.Id);
+			product.Id.Should().Be(id);
 			product.Name.Should().Be(updateProductCommand.Name);
 		}
 		[Test]
-		public async Task PutProduct_BadId_ShouldReturnConflict() {
+		public async Task PutProduct_NotExistingId_ShouldReturnNotFound() {
 			// Arrange
-			var updateProductCommand = RequestBuilder.CreateUpdateProductCommand();
-			var id = RequestBuilder.CreateNotExistingId();
+			var updateProductCommand = _generator.CreateUpdateProductCommand();
+			var id = int.MaxValue;
 			//Act
 			var response = await _client.PutAsJsonAsync($"Products/{id}", updateProductCommand);
 			// Assert
-			response.StatusCode.Should().Be(HttpStatusCode.Conflict);
+			response.StatusCode.Should().Be(HttpStatusCode.NotFound);
 		}
 		[Test]
-		public async Task DeleteProduct_CorrectId_ShouldReturnProductDto() {
+		public async Task DeleteProduct_CorrectId_ShouldReturnProduct() {
 			// Arrange
-			var productsFromData = ProductsFactory.Products.ToList();
-			var id = RequestBuilder.CreateExistingId();
-			var productFromData = productsFromData.First(a => a.Id == id);
+			var expectedProduct = ProductsFactory.Products.Skip(1).First();
+			var id = expectedProduct.Id;
 			//Act
 			var response = await _client.DeleteAsync($"Products/{id}");
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
 			var product = await response.Content.ReadFromJsonAsync<ProductDto>();
 			// Assert
 			product.Should().NotBeNull();
-			product.Id.Should().Be(productFromData.Id);
-			product.Name.Should().Be(productFromData.Name);
+			product.Id.Should().Be(expectedProduct.Id);
+			product.Name.Should().Be(expectedProduct.Name);
 		}
 		[Test]
-		public async Task DeleteProduct_BadId_ShouldReturnConflict() {
+		public async Task DeleteProduct_NotExistingId_ShouldReturnBadRequest() {
 			// Arrange
-			var id = RequestBuilder.CreateNotExistingId();
+			var generator = new ProductGenerator();
+			var id = generator.CreateNotExistingId();
 			//Act
 			var response = await _client.DeleteAsync($"Products/{id}");
 			// Assert
-			response.StatusCode.Should().Be(HttpStatusCode.MethodNotAllowed);
+			response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 		}
 	}
 }

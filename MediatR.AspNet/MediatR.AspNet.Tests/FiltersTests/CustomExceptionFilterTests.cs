@@ -42,7 +42,7 @@ namespace MediatR.AspNet.Tests.FiltersTests {
             filter.OnException(exceptionContext);
 
             // Assert
-            actionContext.HttpContext.Response.StatusCode.Should().Be((int) HttpStatusCode.MethodNotAllowed);
+            actionContext.HttpContext.Response.StatusCode.Should().Be((int) HttpStatusCode.BadRequest);
         }
 
         [Test]

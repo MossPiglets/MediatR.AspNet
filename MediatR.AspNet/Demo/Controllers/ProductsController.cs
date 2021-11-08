@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Demo.Product;
+using Demo.Product.Commands.CreateProduct;
 using Demo.Product.Commands.DeleteProduct;
-using Demo.Product.Commands.PostProduct;
-using Demo.Product.Commands.PutProduct;
+using Demo.Product.Commands.UpdateProduct;
 using Demo.Product.Queries.GetProductById;
 using Demo.Product.Queries.GetProducts;
 using MediatR;
@@ -24,9 +24,9 @@ namespace Demo.Controllers {
             var query = new GetProductsQuery();
             return await _mediator.Send(query);
         }
-
+        
         [HttpGet("{id}")]
-        public async Task<ProductDto> GetById(int id) {
+        public async Task<ProductDto> GetById([FromRoute]int id) {
             var query = new GetProductByIdQuery {
                 Id = id
             };
@@ -39,13 +39,13 @@ namespace Demo.Controllers {
         }
 
         [HttpPut("{id}")]
-        public async Task<ProductDto> Put(UpdateProductCommand command, int id) {
-            command.OldProductId = id;
+        public async Task<ProductDto> Put([FromRoute] int id, UpdateProductCommand command) {
+            command.Id = id;
             return await _mediator.Send(command);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ProductDto> Delete(int id) {
+        public async Task<ProductDto> Delete([FromRoute] int id) {
             var command = new DeleteProductCommand {
                 Id = id
             };
