@@ -48,7 +48,6 @@
       <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/FiltersTests/CustomExceptionFilterTests.cs" />
       <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/Factories/ExceptionContextFactory.cs" />
       <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/Factories/ActionContextFactory.cs" />
-<<<<<<< HEAD
       <option value="$PROJECT_DIR$/Demo/Product/ProductProfile.cs" />
       <option value="$PROJECT_DIR$/Demo/Product/ProductModel.cs" />
       <option value="$PROJECT_DIR$/Demo/Product/ProductDto.cs" />
@@ -56,11 +55,9 @@
       <option value="$PROJECT_DIR$/Demo/Product/Queries/GetProducts/GetProductsQuery.cs" />
       <option value="$PROJECT_DIR$/Demo/Startup.cs" />
       <option value="$PROJECT_DIR$/Demo/Product/Queries/GetProducts/GetProductsQueryHandler.cs" />
-=======
       <option value="$PROJECT_DIR$/MediatR.AspNet/IServiceCollectionExtensions.cs" />
       <option value="$PROJECT_DIR$/MediatR.AspNet/FiltersExtensions.cs" />
       <option value="$PROJECT_DIR$/MediatR.AspNet.Tests/FiltersExtensionsTests.cs" />
->>>>>>> 10f979eb5209d0b4ff3820520fe343d199ab009e
     </changedPaths>
   </component>
   <component name="ProjectId" id="20AdENdX97n2EeMWFPEt0CfEiSe" />
