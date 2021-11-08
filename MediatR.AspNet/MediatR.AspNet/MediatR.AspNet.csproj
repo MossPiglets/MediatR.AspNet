@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <PackageVersion>0.1.0</PackageVersion>
+    <Authors>MossPiglets</Authors>
+    <Description>CQRS support for MediatR in ASP.Net</Description>
+    <PackageProjectUrl>https://github.com/MossPiglets/MediatR.AspNet</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/MossPiglets/MediatR.AspNet/develop/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/MossPiglets/MediatR.AspNet</RepositoryUrl>
+    <PackageTags>MediatR, ASP.Net, CQRS</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
