@@ -3,12 +3,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Security.Policy;
 using System.Threading.Tasks;
 using Demo;
 using Demo.Product;
 using FluentAssertions;
-using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 
 namespace DemoIntegrationTests {
@@ -115,8 +113,7 @@ namespace DemoIntegrationTests {
 		[Test]
 		public async Task DeleteProduct_NotExistingId_ShouldReturnBadRequest() {
 			// Arrange
-			var generator = new ProductGenerator();
-			var id = generator.CreateNotExistingId();
+			var id = int.MaxValue;
 			//Act
 			var response = await _client.DeleteAsync($"Products/{id}");
 			// Assert
