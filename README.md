@@ -1,3 +1,7 @@
+[![https://www.nuget.org/packages/MediatR.AspNet/](https://img.shields.io/nuget/v/MediatR.AspNet)](https://www.nuget.org/packages/MediatR.AspNet/)
+[![GitHub issues](https://img.shields.io/github/issues/MossPiglets/MediatR.AspNet)](https://GitHub.com/MossPiglets/MediatR.AspNet/issues/)
+[![GitHub license](https://img.shields.io/github/license/MossPiglets/MediatR.AspNet.svg)](https://github.com/MossPiglets/MediatR.AspNet/blob/master/LICENSE)
+
 # MediatR.AspNet
 
 CQRS support for MediatR in ASP.Net.
