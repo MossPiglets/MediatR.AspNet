@@ -26,6 +26,10 @@ namespace MediatR.AspNet.Filters {
                     code = HttpStatusCode.Conflict;
                     problemDetails.Title = context.Exception.Message;
                     break;
+                case NotAuthorizedException _ :
+                    code = HttpStatusCode.Unauthorized;
+                    problemDetails.Title = context.Exception.Message;
+                    break;
                 default:
                     code = HttpStatusCode.InternalServerError;
                     break;

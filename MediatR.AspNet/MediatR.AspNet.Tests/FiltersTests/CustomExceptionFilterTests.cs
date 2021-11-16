@@ -113,5 +113,21 @@ namespace MediatR.AspNet.Tests.FiltersTests {
             actionContext.HttpContext.Response.StatusCode.Should()
                 .Be((int) HttpStatusCode.InternalServerError);
         }
+        [Test]
+        public void NotAuthorizedException_ShouldReturnUnauthorized() {
+            // Arrange 
+            var exception = new NotAuthorizedException();
+            var actionContext = ActionContextFactory.CreateActionContext();
+            var exceptionContext = new ExceptionContext(actionContext, new List<IFilterMetadata>()) {
+                Exception = exception
+            };
+            var filter = new CustomExceptionFilter();
+
+            // Act
+            filter.OnException(exceptionContext);
+
+            // Assert
+            actionContext.HttpContext.Response.StatusCode.Should().Be((int) HttpStatusCode.Unauthorized);
+        }
     }
 }
