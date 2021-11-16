@@ -8,6 +8,8 @@ CQRS support for MediatR in ASP.Net.
 
 Made as .Net Standard 2.0 library.
 
+-> [Changelog](https://github.com/MossPiglets/MediatR.AspNet/blob/develop/CHANGELOG.md)
+
 ### Features
 
 - interface `IQuery<T>`
@@ -18,6 +20,7 @@ Made as .Net Standard 2.0 library.
     - `NotFoundException`
     - `OperationNotAllowedException`
     - `UpdateNotAllowedException`
+    - `NotAuthorizedException`
 - custom Exception Filter
 
 ### Usage
