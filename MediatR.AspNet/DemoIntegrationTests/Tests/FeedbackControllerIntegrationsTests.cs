@@ -2,7 +2,6 @@
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Demo.Feedback.Commands.SendFeedback;
 using DemoIntegrationTests.Generators;
 using FluentAssertions;
 using NUnit.Framework;
@@ -25,9 +24,9 @@ namespace DemoIntegrationTests.Tests {
         [Test]
         public async Task PostProduct_CorrectId_ShouldReturnProduct() {
             // Arrange
-            var createSendFeedbackCommand = _generator.CreateSendFeedbackCommand();
+            var sendFeedbackCommand = _generator.CreateSendFeedbackCommand();
             //Act
-            var response = await _client.PostAsJsonAsync("Feedback", createSendFeedbackCommand);
+            var response = await _client.PostAsJsonAsync("Feedback", sendFeedbackCommand);
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
