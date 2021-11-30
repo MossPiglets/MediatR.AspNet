@@ -8,6 +8,8 @@ CQRS support for MediatR in ASP.Net.
 
 Made as .Net Standard 2.0 library.
 
+-> [Changelog](https://github.com/MossPiglets/MediatR.AspNet/blob/develop/CHANGELOG.md)
+
 ### Features
 
 - interface `IQuery<T>`
@@ -18,6 +20,7 @@ Made as .Net Standard 2.0 library.
     - `NotFoundException`
     - `OperationNotAllowedException`
     - `UpdateNotAllowedException`
+    - `NotAuthorizedException`
 - custom Exception Filter
 
 ### Usage
@@ -109,7 +112,8 @@ public class ProductsController : ControllerBase {
 We are happy to accept suggestions for further development. Please feel free to add Issues :)
 
 ### Authors
-- [Katarzyna-Kadziolka](https://github.com/Katarzyna-Kadziolka)
+- [Hubert Morawski](https://github.com/Morasiu)
+- [Katarzyna Kądziołka](https://github.com/Katarzyna-Kadziolka)
 
 ### License
 This project is licensed under the MIT License - see the [LICENSE](https://raw.githubusercontent.com/MossPiglets/MediatR.AspNet/develop/LICENSE) file for details.
