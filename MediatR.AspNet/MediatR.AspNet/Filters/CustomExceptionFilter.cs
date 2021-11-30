@@ -30,6 +30,10 @@ namespace MediatR.AspNet.Filters {
                     code = HttpStatusCode.Unauthorized;
                     problemDetails.Title = context.Exception.Message;
                     break;
+                case ExternalServiceFailureException _ :
+                    code = HttpStatusCode.BadGateway;
+                    problemDetails.Title = context.Exception.Message;
+                    break;
                 default:
                     code = HttpStatusCode.InternalServerError;
                     break;
