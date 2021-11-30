@@ -6,10 +6,11 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Demo;
 using Demo.Product;
+using DemoIntegrationTests.Generators;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace DemoIntegrationTests {
+namespace DemoIntegrationTests.Tests {
 	public class ProductControllerIntegrationTests {
 		private HttpClient _client;
 		private ProductGenerator _generator = new ProductGenerator();

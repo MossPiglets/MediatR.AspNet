@@ -2,7 +2,7 @@
 using Demo.Product.Commands.CreateProduct;
 using Demo.Product.Commands.UpdateProduct;
 
-namespace DemoIntegrationTests {
+namespace DemoIntegrationTests.Generators {
 	public class ProductGenerator {
 		public CreateProductCommand CreateCreateProductCommand() {
 			return new Faker<CreateProductCommand>()
