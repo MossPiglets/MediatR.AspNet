@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Demo.Product;
 using Demo.Product.Commands.CreateProduct;
 using Demo.Product.Commands.DeleteProduct;
+using Demo.Product.Commands.ErrorProduct;
 using Demo.Product.Commands.UpdateProduct;
 using Demo.Product.Queries.GetProductById;
 using Demo.Product.Queries.GetProducts;
@@ -50,6 +52,11 @@ namespace Demo.Controllers {
                 Id = id
             };
             return await _mediator.Send(command);
+        }
+
+        [HttpPost("Exception")]
+        public async Task<Unit> PostException() {
+            return await _mediator.Send(new ErrorProductCommand());
         }
     }
 }
