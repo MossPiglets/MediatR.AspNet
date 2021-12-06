@@ -124,7 +124,7 @@ namespace DemoIntegrationTests.Tests {
 			response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 		}
 		[Test]
-		public async Task PostException_ShouldReturnProduct() {
+		public async Task PostException_ShouldReturnProblemDetails() {
 			// Arrange
 			var expectedException = new NotImplementedException();
 			//Act
