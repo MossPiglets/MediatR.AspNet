@@ -2,9 +2,14 @@
 using MediatR.AspNet.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Hosting;
 
 namespace MediatR.AspNet.Filters {
     public sealed class CustomExceptionFilter : ExceptionFilterAttribute {
+        private readonly IHostEnvironment _environment;
+        public CustomExceptionFilter(IHostEnvironment environment) {
+            _environment = environment;
+        }
         public override void OnException(ExceptionContext context) {
             HttpStatusCode code;
             var problemDetails = new ProblemDetails();
@@ -36,9 +41,12 @@ namespace MediatR.AspNet.Filters {
                     break;
                 default:
                     code = HttpStatusCode.InternalServerError;
+                    if (!_environment.IsProduction()) {
+                        problemDetails.Title = context.Exception.Message;
+                        problemDetails.Detail = context.Exception.ToString();
+                    }
                     break;
             }
-
             if (code != HttpStatusCode.InternalServerError) {
                 context.ExceptionHandled = true;
             }

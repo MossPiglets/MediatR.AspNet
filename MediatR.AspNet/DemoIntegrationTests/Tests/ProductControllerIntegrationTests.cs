@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,6 +9,8 @@ using Demo;
 using Demo.Product;
 using DemoIntegrationTests.Generators;
 using FluentAssertions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 
 namespace DemoIntegrationTests.Tests {
@@ -119,6 +122,20 @@ namespace DemoIntegrationTests.Tests {
 			var response = await _client.DeleteAsync($"Products/{id}");
 			// Assert
 			response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+		}
+		[Test]
+		public async Task PostException_ShouldReturnProblemDetails() {
+			// Arrange
+			var expectedException = new NotImplementedException();
+			//Act
+			var response = await _client.PostAsync("Products/Exception", null);
+			response.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
+			var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>();
+			// Assert
+			problemDetails.Should().NotBeNull();
+			problemDetails.Title.Should().Be(expectedException.Message);
+			problemDetails.Detail.Should().Contain(expectedException.Message);
+			problemDetails.Status.Should().Be(StatusCodes.Status500InternalServerError);
 		}
 	}
 }
