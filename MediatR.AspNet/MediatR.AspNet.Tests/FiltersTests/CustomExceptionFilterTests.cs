@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Buffers;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
-using Castle.Core.Logging;
 using FluentAssertions;
 using MediatR.AspNet.Exceptions;
 using MediatR.AspNet.Filters;
 using MediatR.AspNet.Tests.Factories;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -16,7 +12,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace MediatR.AspNet.Tests.FiltersTests {
     public class CustomExceptionFilterTests {
