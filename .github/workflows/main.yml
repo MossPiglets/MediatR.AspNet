@@ -5,6 +5,11 @@ on:
       - develop
   pull_request:
     types: [opened, synchronize, reopened]
+    
+defaults:
+      run:
+        working-directory: ./MediatR.AspNet
+
 jobs:
   build:
     name: Build
