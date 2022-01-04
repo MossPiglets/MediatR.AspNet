@@ -3,6 +3,7 @@ name: .NET
 on:
   pull_request:
     branches: [ develop ]
+  workflow_dispatch:
     
 defaults:
       run:
