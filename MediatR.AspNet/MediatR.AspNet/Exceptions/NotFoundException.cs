@@ -1,11 +1,11 @@
 using System;
+using Microsoft.AspNetCore.Http;
 
 namespace MediatR.AspNet.Exceptions {
-	public class NotFoundException : Exception {
-		public NotFoundException() : base("Entity not found") { }
-		public NotFoundException(Type entityType) : base($"{entityType.Name} not found") { }
-		public NotFoundException(Type entityType, string id) : base($"{entityType.Name} not found with id {id}") { }
-		public NotFoundException(string message, Exception innerException) : base(message, innerException) { }
-		public NotFoundException(string message) : base(message) { }
+	public class NotFoundException : BaseApplicationException {
+		public NotFoundException() : base("NotFound", StatusCodes.Status404NotFound, "Entity not found") { }
+		public NotFoundException(Type entityType) : base("NotFound", StatusCodes.Status404NotFound, $"{entityType.Name} not found") { }
+		public NotFoundException(Type entityType, string id) : base("NotFound", StatusCodes.Status404NotFound, $"{entityType.Name} not found with id {id}") { }
+		public NotFoundException(string message) : base("NotFound", StatusCodes.Status404NotFound, message) { }
 	}
 }
