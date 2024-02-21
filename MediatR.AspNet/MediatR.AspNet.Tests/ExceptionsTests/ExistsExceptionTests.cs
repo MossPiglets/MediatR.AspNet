@@ -10,7 +10,7 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             // Arrange
             // Act
             // Assert
-            typeof(ExistsException).Should().BeAssignableTo(typeof(Exception));
+            typeof(ExistsException).Should().BeAssignableTo(typeof(BaseApplicationException));
         }
 
         [Test]
@@ -41,17 +41,7 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             // Assert
             exception.Message.Should().Be($"{type.Name} with id {id} already exists");
         }
-        [Test]
-        public void MessageAndInnerException_ShouldReturnExceptionWithMessageAndInnerException() {
-            // Arrange
-            var innerException = new ArgumentException();
-            var message = "test";
-            // Act
-            var exception = new ExistsException(message, innerException);
-            // Assert
-            exception.Message.Should().Be(message);
-            exception.InnerException.Should().Be(innerException);
-        }
+        
         [Test]
         public void Message_ShouldReturnExceptionWithMessage() {
             // Arrange

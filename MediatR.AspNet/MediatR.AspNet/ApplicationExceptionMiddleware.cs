@@ -1,22 +1,12 @@
-﻿using System;
-using System.Net;
-using System.Threading.Tasks;
-using MediatR.AspNet.Exceptions;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace MediatR.AspNet {
-    public class ExceptionMiddleware {
-        private readonly RequestDelegate _request;
-        
-
-        public ExceptionMiddleware(RequestDelegate request) {
-            _request = request;
-        }
-
-        public async Task InvokeAsynce(HttpContext context) {
+    public class ApplicationExceptionMiddleware: IMiddleware {
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next) {
             try {
-                await _request(context);
+                await next(context);
             }
             catch (BaseApplicationException e) {
                 context.Response.StatusCode = e.Status;

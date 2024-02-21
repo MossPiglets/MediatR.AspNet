@@ -19,7 +19,7 @@ namespace Demo {
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services) {
 			services.AddMediatR(typeof(Startup));
-			services.AddControllers(o => o.Filters.AddMediatrExceptions());
+			services.AddControllers(o => o.Filters.UseApplicationExceptions());
 			services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 			services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo", Version = "v1" }); });
 		}

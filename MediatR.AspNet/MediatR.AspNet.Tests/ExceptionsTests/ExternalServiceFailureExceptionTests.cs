@@ -10,7 +10,7 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             // Arrange
             // Act
             // Assert
-            typeof(ExternalServiceFailureException).Should().BeAssignableTo(typeof(Exception));
+            typeof(ExternalServiceFailureException).Should().BeAssignableTo(typeof(BaseApplicationException));
         }
 
         [Test]
@@ -20,18 +20,6 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new ExternalServiceFailureException();
             // Assert
             exception.Message.Should().Be("External service failed");
-        }
-
-        [Test]
-        public void MessageAndInnerException_ShouldReturnExceptionWithMessageAndInnerException() {
-            // Arrange
-            var innerException = new ArgumentException();
-            var message = "test";
-            // Act
-            var exception = new ExternalServiceFailureException(message, innerException);
-            // Assert
-            exception.Message.Should().Be(message);
-            exception.InnerException.Should().Be(innerException);
         }
 
         [Test]

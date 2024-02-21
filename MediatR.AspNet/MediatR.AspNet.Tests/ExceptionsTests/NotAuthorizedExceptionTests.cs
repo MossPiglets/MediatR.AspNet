@@ -10,7 +10,7 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             // Arrange
             // Act
             // Assert
-            typeof(NotAuthorizedException).Should().BeAssignableTo(typeof(Exception));
+            typeof(NotAuthorizedException).Should().BeAssignableTo(typeof(BaseApplicationException));
         }
 
         [Test]
@@ -41,17 +41,7 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             // Assert
             exception.Message.Should().Be($"User is not allowed to access {type.Name} with id {id}");
         }
-        [Test]
-        public void MessageAndInnerException_ShouldReturnExceptionWithMessageAndInnerException() {
-            // Arrange
-            var innerException = new ArgumentException();
-            var message = "test";
-            // Act
-            var exception = new NotAuthorizedException(message, innerException);
-            // Assert
-            exception.Message.Should().Be(message);
-            exception.InnerException.Should().Be(innerException);
-        }
+
         [Test]
         public void Message_ShouldReturnExceptionWithMessage() {
             // Arrange

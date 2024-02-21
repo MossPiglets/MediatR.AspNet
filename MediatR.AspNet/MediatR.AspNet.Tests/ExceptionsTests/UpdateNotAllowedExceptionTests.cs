@@ -10,7 +10,7 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             // Arrange
             // Act
             // Assert
-            typeof(UpdateNotAllowedException).Should().BeAssignableTo(typeof(Exception));
+            typeof(UpdateNotAllowedException).Should().BeAssignableTo(typeof(BaseApplicationException));
         }
 
         [Test]
@@ -41,18 +41,6 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new UpdateNotAllowedException(type, id);
             // Assert
             exception.Message.Should().Be($"Cannot update {type.Name} with id {id}");
-        }
-
-        [Test]
-        public void MessageAndInnerException_ShouldReturnExceptionWithMessageAndInnerException() {
-            // Arrange
-            var innerException = new ArgumentException();
-            var message = "test";
-            // Act
-            var exception = new UpdateNotAllowedException(message, innerException);
-            // Assert
-            exception.Message.Should().Be(message);
-            exception.InnerException.Should().Be(innerException);
         }
 
         [Test]
