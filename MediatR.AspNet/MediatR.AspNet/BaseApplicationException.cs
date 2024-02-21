@@ -3,19 +3,19 @@
 namespace MediatR.AspNet {
     public abstract class BaseApplicationException : Exception {
         private string _code;
-        private int _status;
+        public int Status;
         private string _message;
 
         public BaseApplicationException(string code, int status, string message) {
             _code = code;
-            _status = status;
+            Status = status;
             _message = message;
         }
 
         public ApplicationErrorDetails ToProblemDetails() {
             return new ApplicationErrorDetails {
                 Code = _code,
-                Status = _status,
+                Status = Status,
                 Message = _message
             };
         }

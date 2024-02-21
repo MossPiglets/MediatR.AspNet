@@ -3,6 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using MediatR.AspNet.Exceptions;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace MediatR.AspNet {
     public class ExceptionMiddleware {
@@ -17,11 +18,13 @@ namespace MediatR.AspNet {
             try {
                 await _request(context);
             }
-            catch (NotFoundException e) {
-                context.Response.StatusCode = (int) HttpStatusCode.NotFound;
-                var error = e.Message;
-                await context.Response.WriteAsync(error);
+            catch (BaseApplicationException e) {
+                context.Response.StatusCode = e.Status;
+                var error = e.ToProblemDetails();
+                var json = JsonConvert.SerializeObject(error);
+                await context.Response.WriteAsync(json);
             }
         }
     }
 }
+
