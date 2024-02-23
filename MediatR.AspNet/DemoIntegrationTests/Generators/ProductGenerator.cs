@@ -1,6 +1,6 @@
 ﻿using Bogus;
-using Demo.Product.Commands.CreateProduct;
-using Demo.Product.Commands.UpdateProduct;
+using DemoOld.Product.Commands.CreateProduct;
+using DemoOld.Product.Commands.UpdateProduct;
 
 namespace DemoIntegrationTests.Generators {
 	public class ProductGenerator {

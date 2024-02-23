@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediatR.AspNet.Tests", "Med
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DemoProject", "DemoProject", "{C0EC2D62-194D-4AE4-A5E9-2BE840E24E10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{225AE39D-51C4-4E3A-BB58-8D4890B0A197}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoOld", "DemoOld\DemoOld.csproj", "{225AE39D-51C4-4E3A-BB58-8D4890B0A197}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoIntegrationTests", "DemoIntegrationTests\DemoIntegrationTests.csproj", "{116845A5-50FA-45CC-BA59-B7264B96D50E}"
 EndProject

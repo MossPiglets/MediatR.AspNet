@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using Demo.Feedback.Commands.SendFeedback;
+using DemoOld.Feedback.Commands.SendFeedback;
 
 namespace DemoIntegrationTests.Generators {
     public class FeedbackGenerator {

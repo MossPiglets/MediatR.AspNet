@@ -1,4 +1,4 @@
-﻿using Demo;
+﻿using DemoOld;
 using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace DemoIntegrationTests {
