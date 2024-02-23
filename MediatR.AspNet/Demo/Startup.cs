@@ -5,8 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
-using MediatR;
-using MediatR.AspNet;
 
 namespace Demo {
 	public class Startup {

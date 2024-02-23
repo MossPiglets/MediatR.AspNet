@@ -1,5 +1,4 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using MediatR.AspNet.Exceptions;
 using Microsoft.AspNetCore.Http;
 using NUnit.Framework;

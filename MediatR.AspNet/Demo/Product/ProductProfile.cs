@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Demo.Product.Commands.CreateProduct;
 using Demo.Product.Commands.UpdateProduct;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Demo.Product {
     public class ProductProfile : Profile {

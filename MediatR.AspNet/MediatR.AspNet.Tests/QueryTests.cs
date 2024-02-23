@@ -1,6 +1,4 @@
-using System.Runtime.InteropServices;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
 using NUnit.Framework;
 
 namespace MediatR.AspNet.Tests {

@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using MediatR.AspNet.Exceptions;
 
 namespace Demo.Product.Commands.CreateProduct {
 	public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, ProductDto> {

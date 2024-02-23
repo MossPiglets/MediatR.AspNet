@@ -1,4 +1,3 @@
-using System;
 using FluentAssertions;
 using MediatR.AspNet.Exceptions;
 using Microsoft.AspNetCore.Http;
