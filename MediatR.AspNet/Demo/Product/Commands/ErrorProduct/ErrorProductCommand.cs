@@ -1,5 +1,4 @@
-﻿using MediatR;
-using MediatR.AspNet;
+﻿using MediatR.AspNet;
 
 namespace Demo.Product.Commands.ErrorProduct;
 
