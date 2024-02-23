@@ -7,7 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Bogus" Version="33.1.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MediatR.AspNet\MediatR.AspNet.csproj" />
     </ItemGroup>
 
 </Project>
