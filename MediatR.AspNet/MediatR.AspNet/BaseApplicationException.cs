@@ -2,21 +2,21 @@
 
 namespace MediatR.AspNet {
     public abstract class BaseApplicationException : Exception {
-        private string _code;
+        public string Code;
         public int Status;
-        private string _message;
+        public string Message;
 
         public BaseApplicationException(string code, int status, string message) {
-            _code = code;
+            Code = code;
             Status = status;
-            _message = message;
+            Message = message;
         }
 
         public ApplicationErrorDetails ToProblemDetails() {
             return new ApplicationErrorDetails {
-                Code = _code,
+                Code = Code,
                 Status = Status,
-                Message = _message
+                Message = Message
             };
         }
     }

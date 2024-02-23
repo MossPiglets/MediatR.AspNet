@@ -1,6 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 using MediatR.AspNet.Exceptions;
+using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
 
 namespace MediatR.AspNet.Tests.ExceptionsTests {
@@ -20,6 +21,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new NotAuthorizedException();
             // Assert
             exception.Message.Should().Be("User is not allowed to access entity");
+            exception.Code.Should().Be("NotAuthorized");
+            exception.Status.Should().Be(StatusCodes.Status401Unauthorized);
         }
 
         [Test]
@@ -30,6 +33,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new NotAuthorizedException(type);
             // Assert
             exception.Message.Should().Be($"User is not allowed to access {type.Name}");
+            exception.Code.Should().Be("NotAuthorized");
+            exception.Status.Should().Be(StatusCodes.Status401Unauthorized);
         }
         [Test]
         public void EntityTypeAndId_ShouldReturnExceptionWithEntityTypeAndId() {
@@ -40,6 +45,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new NotAuthorizedException(type, id);
             // Assert
             exception.Message.Should().Be($"User is not allowed to access {type.Name} with id {id}");
+            exception.Code.Should().Be("NotAuthorized");
+            exception.Status.Should().Be(StatusCodes.Status401Unauthorized);
         }
 
         [Test]
@@ -50,6 +57,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new NotAuthorizedException(message);
             // Assert
             exception.Message.Should().Be(message);
+            exception.Code.Should().Be("NotAuthorized");
+            exception.Status.Should().Be(StatusCodes.Status401Unauthorized);
         }
     }
 }

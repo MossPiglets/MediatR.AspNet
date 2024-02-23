@@ -1,6 +1,7 @@
 using System;
 using FluentAssertions;
 using MediatR.AspNet.Exceptions;
+using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
 
 namespace MediatR.AspNet.Tests.ExceptionsTests {
@@ -20,6 +21,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new NotFoundException();
             // Assert
             exception.Message.Should().Be("Entity not found");
+            exception.Code.Should().Be("NotFound");
+            exception.Status.Should().Be(StatusCodes.Status404NotFound);
         }
 
         [Test]
@@ -30,6 +33,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new NotFoundException(type);
             // Assert
             exception.Message.Should().Be($"{type.Name} not found");
+            exception.Code.Should().Be("NotFound");
+            exception.Status.Should().Be(StatusCodes.Status404NotFound);
         }
         [Test]
         public void EntityTypeAndId_ShouldReturnExceptionWithEntityTypeAndId() {
@@ -40,6 +45,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new NotFoundException(type, id);
             // Assert
             exception.Message.Should().Be($"{type.Name} not found with id {id}");
+            exception.Code.Should().Be("NotFound");
+            exception.Status.Should().Be(StatusCodes.Status404NotFound);
         }
 
         [Test]
@@ -50,6 +57,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new NotFoundException(message);
             // Assert
             exception.Message.Should().Be(message);
+            exception.Code.Should().Be("NotFound");
+            exception.Status.Should().Be(StatusCodes.Status404NotFound);
         }
     }
 }

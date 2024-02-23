@@ -1,6 +1,6 @@
-using System;
 using FluentAssertions;
 using MediatR.AspNet.Exceptions;
+using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
 
 namespace MediatR.AspNet.Tests.ExceptionsTests {
@@ -20,6 +20,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new UpdateNotAllowedException();
             // Assert
             exception.Message.Should().Be("Cannot update entity");
+            exception.Code.Should().Be("UpdateNotAllowed");
+            exception.Status.Should().Be(StatusCodes.Status409Conflict);
         }
 
         [Test]
@@ -30,6 +32,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new UpdateNotAllowedException(type);
             // Assert
             exception.Message.Should().Be($"Cannot update {type.Name}");
+            exception.Code.Should().Be("UpdateNotAllowed");
+            exception.Status.Should().Be(StatusCodes.Status409Conflict);
         }
 
         [Test]
@@ -41,6 +45,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new UpdateNotAllowedException(type, id);
             // Assert
             exception.Message.Should().Be($"Cannot update {type.Name} with id {id}");
+            exception.Code.Should().Be("UpdateNotAllowed");
+            exception.Status.Should().Be(StatusCodes.Status409Conflict);
         }
 
         [Test]
@@ -51,6 +57,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new UpdateNotAllowedException(message);
             // Assert
             exception.Message.Should().Be(message);
+            exception.Code.Should().Be("UpdateNotAllowed");
+            exception.Status.Should().Be(StatusCodes.Status409Conflict);
         }
     }
 }

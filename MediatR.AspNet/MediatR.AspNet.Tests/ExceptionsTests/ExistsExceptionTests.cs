@@ -1,6 +1,7 @@
 using System;
 using FluentAssertions;
 using MediatR.AspNet.Exceptions;
+using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
 
 namespace MediatR.AspNet.Tests.ExceptionsTests {
@@ -20,6 +21,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new ExistsException();
             // Assert
             exception.Message.Should().Be("Entity already exists");
+            exception.Code.Should().Be("Exists");
+            exception.Status.Should().Be(StatusCodes.Status409Conflict);
         }
 
         [Test]
@@ -30,6 +33,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new ExistsException(type);
             // Assert
             exception.Message.Should().Be($"{type.Name} already exists");
+            exception.Code.Should().Be("Exists");
+            exception.Status.Should().Be(StatusCodes.Status409Conflict);
         }
         [Test]
         public void EntityTypeAndId_ShouldReturnExceptionWithEntityTypeAndId() {
@@ -40,6 +45,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new ExistsException(type, id);
             // Assert
             exception.Message.Should().Be($"{type.Name} with id {id} already exists");
+            exception.Code.Should().Be("Exists");
+            exception.Status.Should().Be(StatusCodes.Status409Conflict);
         }
         
         [Test]
@@ -50,6 +57,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new ExistsException(message);
             // Assert
             exception.Message.Should().Be(message);
+            exception.Code.Should().Be("Exists");
+            exception.Status.Should().Be(StatusCodes.Status409Conflict);
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using FluentAssertions;
 using MediatR.AspNet.Exceptions;
+using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
 
 namespace MediatR.AspNet.Tests.ExceptionsTests {
@@ -20,6 +21,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new OperationNotAllowedException();
             // Assert
             exception.Message.Should().Be("Cannot make operation on entity");
+            exception.Code.Should().Be("OperationNotAllowed");
+            exception.Status.Should().Be(StatusCodes.Status403Forbidden);
         }
 
         [Test]
@@ -30,6 +33,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new OperationNotAllowedException(type);
             // Assert
             exception.Message.Should().Be($"Cannot make operation on {type.Name}");
+            exception.Code.Should().Be("OperationNotAllowed");
+            exception.Status.Should().Be(StatusCodes.Status403Forbidden);
         }
 
         [Test]
@@ -41,6 +46,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new OperationNotAllowedException(type, id);
             // Assert
             exception.Message.Should().Be($"Cannot make operation on {type.Name} with id {id}");
+            exception.Code.Should().Be("OperationNotAllowed");
+            exception.Status.Should().Be(StatusCodes.Status403Forbidden);
         }
 
         [Test]
@@ -51,6 +58,8 @@ namespace MediatR.AspNet.Tests.ExceptionsTests {
             var exception = new OperationNotAllowedException(message);
             // Assert
             exception.Message.Should().Be(message);
+            exception.Code.Should().Be("OperationNotAllowed");
+            exception.Status.Should().Be(StatusCodes.Status403Forbidden);
         }
     }
 }
