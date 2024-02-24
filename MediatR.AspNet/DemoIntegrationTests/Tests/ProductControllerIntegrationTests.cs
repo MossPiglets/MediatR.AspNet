@@ -37,7 +37,7 @@ public class ProductControllerIntegrationTests {
 		var expectedProducts = ProductsFactory.Products;
 		//Act
 		var response = await _client.GetAsync("Products");
-		response.StatusCode.Should().Be(HttpStatusCode.OK);
+		response.Should().Be200Ok();
 		var products = await response.Content.ReadFromJsonAsync<List<ProductDto>>();
 		// Assert
 		products.Should().NotBeEmpty();
