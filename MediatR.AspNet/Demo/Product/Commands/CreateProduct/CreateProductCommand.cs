@@ -3,5 +3,5 @@
 namespace Demo.Product.Commands.CreateProduct;
 
 public class CreateProductCommand : ICommand<ProductDto> {
-	public string Name { get; set; }
+	public string Name { get; set; } = null!;
 }
