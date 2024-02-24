@@ -65,11 +65,9 @@ public class GetProductByIdQuery : IQuery<ProductDto> {
 public class GetProductByIdQueryHandler: IRequestHandler<GetProductByIdQuery, ProductDto> {
         
     private readonly ProductContext _context;
-    private readonly IMapper _mapper;
         
-    public GetProductByIdQueryHandler(ProductContext context, IMapper mapper) {
+    public GetProductByIdQueryHandler(ProductContext context) {
         _context = context;
-         _mapper = mapper;
     }
         
     public Task<ProductDto> Handle(GetProductByIdQuery request, CancellationToken cancellationToken) {
@@ -79,10 +77,7 @@ public class GetProductByIdQueryHandler: IRequestHandler<GetProductByIdQuery, Pr
             throw new NotFoundException(typeof(Product), request.Id.ToString());
         }
 
-                var mappedProductEntity = _mapper.Map<ProductDto>(productEntity);
-                return Task.FromResult(mappedProductEntity);
-            }
-        }
+        return Task.FromResult(productEntity.toDto());
     }
 }
 ```
