@@ -1,23 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
-using MediatR;
+﻿using MediatR;
 
-namespace Demo.Product.Queries.GetProducts {
-    public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, IEnumerable<ProductDto>> {
-        private readonly List<Product> _products;
-        private readonly IMapper _mapper;
+namespace Demo.Product.Queries.GetProducts;
 
-        public GetProductsQueryHandler(IMapper mapper) {
-            _products = ProductsFactory.Products.ToList();
-            _mapper = mapper;
-        }
+public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, IEnumerable<ProductDto>> {
+    private readonly List<Product> _products = ProductsFactory.Products.ToList();
 
-        public Task<IEnumerable<ProductDto>> Handle(GetProductsQuery request, CancellationToken cancellationToken) {
-            var productsEntities = _products.Select(a => _mapper.Map<ProductDto>(a));
-            return Task.FromResult(productsEntities);
-        }
+    public Task<IEnumerable<ProductDto>> Handle(GetProductsQuery request, CancellationToken cancellationToken) {
+        var productsEntities = _products.Select(a => a.ToDto());
+        return Task.FromResult(productsEntities);
     }
 }

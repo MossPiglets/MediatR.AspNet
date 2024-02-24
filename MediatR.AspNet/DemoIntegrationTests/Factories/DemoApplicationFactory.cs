@@ -1,6 +1,6 @@
 ﻿using Demo;
 using Microsoft.AspNetCore.Mvc.Testing;
 
-namespace DemoIntegrationTests {
-	public class DemoWebApplicationFactory : WebApplicationFactory<Startup> { }
-}
+namespace DemoIntegrationTests.Factories;
+
+public class DemoWebApplicationFactory : WebApplicationFactory<IApiMarker> { }

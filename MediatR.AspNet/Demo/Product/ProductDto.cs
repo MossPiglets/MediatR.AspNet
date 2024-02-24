@@ -1,6 +1,6 @@
-﻿namespace Demo.Product {
-    public class ProductDto {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
+﻿namespace Demo.Product;
+
+public class ProductDto {
+    public int Id { get; set; }
+    public string Name { get; set; } = null!;
 }
