@@ -23,7 +23,7 @@ public class FeedbackControllerTests {
         _client.Dispose();
     }
     [Test]
-    public async Task PostProduct_CorrectId_ShouldReturnProduct() {
+    public async Task PostFeedback_ShouldStatusBeOk() {
         // Arrange
         var sendFeedbackCommand = _generator.CreateSendFeedbackCommand();
         //Act
