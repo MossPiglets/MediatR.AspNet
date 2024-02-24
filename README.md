@@ -6,7 +6,7 @@
 
 CQRS support for MediatR in ASP.Net.
 
-Made as .Net Standard 2.0 library.
+Made as .Net 6.0 library.
 
 -> [Changelog](https://github.com/MossPiglets/MediatR.AspNet/blob/develop/CHANGELOG.md)
 
@@ -21,18 +21,18 @@ Made as .Net Standard 2.0 library.
     - `OperationNotAllowedException`
     - `UpdateNotAllowedException`
     - `NotAuthorizedException`
-- custom Exception Filter
+- custom Exception Middleware
 
 ### Usage
 **Configuration**
 
 1. Add Nuget package from [here](https://www.nuget.org/packages/MediatR.AspNet/).
-2. In startup of your project:
+2. In Program.cs of your project:
 ```csharp
-public void ConfigureServices(IServiceCollection services) {
-	services.AddMediatR(typeof(Startup));
-	services.AddControllers(o => o.Filters.AddMediatrExceptions());
-}
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+builder.Services.AddApplicationExceptions();
+
+app.UseApplicationExceptions();
 ```
 You can see Demo Project [here](https://github.com/MossPiglets/MediatR.AspNet/tree/develop/MediatR.AspNet/Demo)
 
