@@ -12,8 +12,8 @@ namespace MediatR.AspNet {
             Message = message;
         }
 
-        public ApplicationErrorDetails ToProblemDetails() {
-            return new ApplicationErrorDetails {
+        public ApplicationProblemDetails ToProblemDetails() {
+            return new ApplicationProblemDetails {
                 Code = Code,
                 Status = Status,
                 Message = Message

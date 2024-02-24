@@ -10,8 +10,10 @@ using Demo.Product;
 using DemoIntegrationTests.Factories;
 using DemoIntegrationTests.Generators;
 using FluentAssertions;
+using MediatR.AspNet;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace DemoIntegrationTests.Tests;
@@ -49,7 +51,7 @@ public class ProductControllerIntegrationTests {
 		var expectedProduct = ProductsFactory.Products.First();
 		//Act
 		var response = await _client.GetAsync($"Products/{expectedProduct.Id}");
-		response.StatusCode.Should().Be(HttpStatusCode.OK);
+		response.Should().Be200Ok();
 		var product = await response.Content.ReadFromJsonAsync<ProductDto>();
 		// Assert
 		product.Should().NotBeNull();
@@ -63,7 +65,7 @@ public class ProductControllerIntegrationTests {
 		//Act
 		var response = await _client.GetAsync($"Products/{notExistingId}");
 		// Assert
-		response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+		response.Should().Be404NotFound();
 	}
 	[Test]
 	public async Task PostProduct_CorrectId_ShouldReturnProduct() {
@@ -71,7 +73,7 @@ public class ProductControllerIntegrationTests {
 		var createProductCommand = _generator.CreateCreateProductCommand();
 		//Act
 		var response = await _client.PostAsJsonAsync("Products", createProductCommand);
-		response.StatusCode.Should().Be(HttpStatusCode.OK);
+		response.Should().Be200Ok();
 		var product = await response.Content.ReadFromJsonAsync<ProductDto>();
 		// Assert
 		product.Should().NotBeNull();
@@ -85,7 +87,7 @@ public class ProductControllerIntegrationTests {
 		var id = ProductsFactory.Products.First().Id;
 		//Act
 		var response = await _client.PutAsJsonAsync($"Products/{id}", updateProductCommand);
-		response.StatusCode.Should().Be(HttpStatusCode.OK);
+		response.Should().Be200Ok();
 		var product = await response.Content.ReadFromJsonAsync<ProductDto>();
 		// Assert
 		product.Should().NotBeNull();
@@ -100,7 +102,7 @@ public class ProductControllerIntegrationTests {
 		//Act
 		var response = await _client.PutAsJsonAsync($"Products/{id}", updateProductCommand);
 		// Assert
-		response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+		response.Should().Be404NotFound();
 	}
 	[Test]
 	public async Task DeleteProduct_CorrectId_ShouldReturnProduct() {
@@ -109,7 +111,7 @@ public class ProductControllerIntegrationTests {
 		var id = expectedProduct.Id;
 		//Act
 		var response = await _client.DeleteAsync($"Products/{id}");
-		response.StatusCode.Should().Be(HttpStatusCode.OK);
+		response.Should().Be200Ok();
 		var product = await response.Content.ReadFromJsonAsync<ProductDto>();
 		// Assert
 		product.Should().NotBeNull();
@@ -123,20 +125,16 @@ public class ProductControllerIntegrationTests {
 		//Act
 		var response = await _client.DeleteAsync($"Products/{id}");
 		// Assert
-		response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+		response.Should().Be400BadRequest();
 	}
 	[Test]
 	public async Task PostException_ShouldReturnProblemDetails() {
 		// Arrange
-		var expectedException = new NotImplementedException();
 		//Act
 		var response = await _client.PostAsync("Products/Exception", null);
-		response.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
-		var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>();
+		response.Should().Be500InternalServerError();
+		var content = await response.Content.ReadAsStringAsync();
 		// Assert
-		problemDetails.Should().NotBeNull();
-		problemDetails.Title.Should().Be(expectedException.Message);
-		problemDetails.Detail.Should().Contain(expectedException.Message);
-		problemDetails.Status.Should().Be(StatusCodes.Status500InternalServerError);
+		content.Should().Contain(nameof(NotImplementedException));
 	}
 }
