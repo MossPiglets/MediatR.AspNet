@@ -22,6 +22,7 @@ Made as .Net 6.0 library.
     - `UpdateNotAllowedException`
     - `NotAuthorizedException`
 - custom Exception Middleware
+- possibility to create custom exceptions
 
 ### Usage
 **Configuration**
@@ -102,6 +103,16 @@ public class ProductsController : ControllerBase {
     }
 }
 ```
+
+**Creating custom exception**
+
+Custom exception must inherit from the class `BaseApplicationException`:
+```csharp
+public class MyCustomException : BaseApplicationException {
+    public MyCustomException() : base("I'm a teapot", StatusCodes.Status418ImATeapot, "I'm a custom teapot") { }
+}
+```
+The constructor require code, status and message.
 
 ### Development
 We are happy to accept suggestions for further development. Please feel free to add Issues :)
