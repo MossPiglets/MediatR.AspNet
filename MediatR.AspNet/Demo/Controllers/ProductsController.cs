@@ -1,5 +1,6 @@
 ﻿using Demo.Product;
 using Demo.Product.Commands.CreateProduct;
+using Demo.Product.Commands.CustomErrorProduct;
 using Demo.Product.Commands.DeleteProduct;
 using Demo.Product.Commands.ErrorProduct;
 using Demo.Product.Commands.UpdateProduct;
@@ -55,5 +56,10 @@ public class ProductsController : ControllerBase {
     [HttpPost("Exception")]
     public async Task PostException() {
         await _mediator.Send(new ErrorProductCommand());
+    }
+    
+    [HttpPost("CustomException")]
+    public async Task PostCustomException() {
+        await _mediator.Send(new CustomErrorProductCommand());
     }
 }

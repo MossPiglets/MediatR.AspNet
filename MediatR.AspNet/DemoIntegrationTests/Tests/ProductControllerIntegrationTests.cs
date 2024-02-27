@@ -1,14 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Demo;
+using Demo.Exceptions;
 using Demo.Product;
 using DemoIntegrationTests.Factories;
 using DemoIntegrationTests.Generators;
 using FluentAssertions;
+using MediatR.AspNet;
+using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
 
 namespace DemoIntegrationTests.Tests;
@@ -123,7 +127,7 @@ public class ProductControllerIntegrationTests {
 		response.Should().Be400BadRequest();
 	}
 	[Test]
-	public async Task PostException_ShouldReturnProblemDetails() {
+	public async Task PostException_ShouldReturnNotImplementedException() {
 		// Arrange
 		//Act
 		var response = await _client.PostAsync("Products/Exception", null);
@@ -131,5 +135,17 @@ public class ProductControllerIntegrationTests {
 		var content = await response.Content.ReadAsStringAsync();
 		// Assert
 		content.Should().Contain(nameof(NotImplementedException));
+	}
+	[Test]
+	public async Task PostCustomException_ShouldReturnCustomException() {
+		// Arrange
+		//Act
+		var response = await _client.PostAsync("Products/CustomException", null);
+		((int)response.StatusCode).Should().Be(StatusCodes.Status418ImATeapot);
+		var content = await response.Content.ReadFromJsonAsync<ApplicationProblemDetails>();
+		// Assert
+		content.Code.Should().Be("I'm a teapot");
+		content.Status.Should().Be(StatusCodes.Status418ImATeapot);
+		content.Message.Should().Be("I'm a custom teapot");
 	}
 }
