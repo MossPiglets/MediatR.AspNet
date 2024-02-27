@@ -11,6 +11,7 @@ using Demo.Product;
 using DemoIntegrationTests.Factories;
 using DemoIntegrationTests.Generators;
 using FluentAssertions;
+using MediatR.AspNet;
 using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
 
@@ -140,12 +141,11 @@ public class ProductControllerIntegrationTests {
 		// Arrange
 		//Act
 		var response = await _client.PostAsync("Products/CustomException", null);
-		var statusCode = (int) response.StatusCode;
-		statusCode.Should().Be(418);
-		var content = await response.Content.ReadFromJsonAsync<MyCustomException>();
+		((int)response.StatusCode).Should().Be(StatusCodes.Status418ImATeapot);
+		var content = await response.Content.ReadFromJsonAsync<ApplicationProblemDetails>();
 		// Assert
 		content.Code.Should().Be("I'm a teapot");
-		content.Status.Should().Be(418);
+		content.Status.Should().Be(StatusCodes.Status418ImATeapot);
 		content.Message.Should().Be("I'm a custom teapot");
 	}
 }
